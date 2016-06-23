@@ -3,6 +3,6 @@
   "description": ”Api Pour Le projet Myocosplay”,
   "repository": "https://github.com/heroku/node-js-getting-started.git",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
-  "keywords": ["node", "express", "static"],
+  "keywords": ["node", "express", "static”,”mysql”,”MD5”],
   "image": "heroku/nodejs"
 }
