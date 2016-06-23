@@ -4,7 +4,26 @@ var bodyParser  = require("body-parser");
 var md5 = require('MD5');
 var rest = require("./REST.js");
 var app  = express();
+// ok
 
+app.set('port', (process.env.PORT || 5000));
+
+app.use(express.static(__dirname + '/public'));
+
+// views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(request, response) {
+  response.render('pages/index');
+});
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
+
+//ok
 function REST(){
     var self = this;
     self.connectMysql();
@@ -40,7 +59,7 @@ REST.prototype.configureExpress = function(connection) {
 }
 
 REST.prototype.startServer = function() {
-      app.listen(3000,function(){
+      app.listen(5000,function(){
           console.log("All right ! I am alive at Port 3000.");
       });
 }
