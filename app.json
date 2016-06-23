@@ -1,7 +1,7 @@
 {
   "name": ”MyoCplsya Api”,
   "description": ”Api Pour Le projet Myocosplay”,
-  "repository": "https://git.heroku.com/myocosplayeip.git",
+  "repository": "https://github.com/heroku/node-js-getting-started.git",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["node", "express", "static"],
   "image": "heroku/nodejs"
