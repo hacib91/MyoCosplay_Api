@@ -14,9 +14,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
         var table = ["usr","login","mdp","echec_cnx","last_ip","last_co","device","email","telephone",
 		"nom","prenom",req.body.login,md5(req.body.mdp),0,'125.123','2015-10-5',req.body.device,
 		req.body.email,req.body.tel,req.body.nom,req.body.prenom];
-	
-		  //var table = ["usr","login", "mdp","email","telephone","nom","prenom",req.body.login,md5(req.body.mdp),req.body.email,req.body.telephone,req.body.nom,req.body.prenom,];
-        query = mysql.format(query,table);
+	 
+	        query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
@@ -93,15 +92,15 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 	
 	
 	/*delete users start*/
-	router.delete("/users/:email",function(req,res){
-        var query = "DELETE from ?? WHERE ??=?";
-        var table = ["usr","email",req.params.email];
+	router.delete("/users/",function(req,res){
+        var query = "DELETE from ?? WHERE ??=? AND ??=?";
+        var table = ["usr","email","mdp",req.body.email, req.body.mdp];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Deleted the user with the id "+req.params.email});
+                res.json({"Error" : false, "Message" : "Deleted the user with the id "+req.body.email});
             }
         });
     });
