@@ -94,7 +94,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 	/*delete users start*/
 	router.delete("/users/",function(req,res){
         var query = "DELETE from ?? WHERE ??=? AND ??=?";
-        var table = ["usr","email","mdp",req.body.email, req.body.mdp];
+        var table = ["usr","mdp", md5(req.body.mdp),"email",req.body.email];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
