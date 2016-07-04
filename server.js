@@ -1,8 +1,9 @@
 var express = require("express");
 var mysql   = require("mysql");
 var bodyParser  = require("body-parser");
-var md5 = require('MD5');
+//var md5 = require('MD5');
 var sha1 = require('sha1');
+var hash = require('hash');
 var rest = require("./REST.js");
 var app  = express();
 // ok
@@ -39,7 +40,7 @@ REST.prototype.configureExpress = function(connection) {
       app.use(bodyParser.json());
       var router = express.Router();
       app.use('/api', router);
-      var rest_router = new rest(router,connection,md5);
+      var rest_router = new rest(router,connection,sha1);
       self.startServer();
 }
 
