@@ -16,11 +16,11 @@ function REST(){
 REST.prototype.connectMysql = function() {
     var self = this;
     var pool      =    mysql.createPool({
-        connectionLimit : 100,
-        host     : 'us-cdbr-iron-east-04.cleardb.net',
-        user     : 'b206c06b11d3aa',
-        password : '516f4be2',
-        database : 'heroku_ddc61186e7b10a3',
+        connectionLimit : 500,
+  host     : '163.172.28.97',
+        user     : 'yoann',
+        password : 'baninou2!',
+        database : 'yoann',
         debug    :  false
     });
 	    pool.getConnection(function(err,connection){
