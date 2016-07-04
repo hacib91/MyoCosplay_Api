@@ -4,7 +4,7 @@ function REST_ROUTER(router,connection,sha1) {
     self.handleRoutes(router,connection,sha1);
 }
 
-REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
+REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     router.get("/",function(req,res){
             res.json({"Message" : "API MYOCOsplay is working !"});
     });
