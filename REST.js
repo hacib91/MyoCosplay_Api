@@ -1,7 +1,7 @@
 var mysql = require("mysql");
-function REST_ROUTER(router,connection,md5) {
+function REST_ROUTER(router,connection,sha1) {
     var self = this;
-    self.handleRoutes(router,connection,md5);
+    self.handleRoutes(router,connection,sha1);
 }
 
 REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
@@ -77,7 +77,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 	/*update users start*/
 	router.put("/users",function(req,res){
         var query = "UPDATE ?? SET ??=? WHERE ??=?";
-        var table = ["usr","mdp",md5(req.body.mdp),"email",req.body.email];
+        var table = ["usr","mdp",sha1(req.body.mdp),"email",req.body.email];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -94,7 +94,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,md5) {
 	/*delete users start*/
 	router.delete("/users/",function(req,res){
         var query = "DELETE from ?? WHERE ??=? AND ??=?";
-        var table = ["usr","mdp", md5(req.body.mdp),"email",req.body.email];
+        var table = ["usr","mdp", sha1(req.body.mdp),"email",req.body.email];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
