@@ -29,7 +29,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		
 		//add users
     router.post("/test",function(req,res){
-       var query = "INSERT INTO ??(?? VALUES (?)";
+       var query = "INSERT INTO ??(??) VALUES (?)";
         var table = ["test","login",req.body.login];
 	 
 	        query = mysql.format(query,table);
