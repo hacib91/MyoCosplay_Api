@@ -13,7 +13,24 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
        var query = "INSERT INTO ??(??,??,??,??,??,??,??,??,??,??,??) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         var table = ["usr","login","mdp","echec_cnx","last_ip","last_co","device","email","telephone",
 		"nom","prenom","tuto_langue",req.body.login,sha1(req.body.mdp),0,'125.123','2015-10-5',req.body.device,
-		req.body.email,req.body.tel,req.body.nom,req.body.prenom,'[fr]'];
+		req.body.email,req.body.tel,req.body.nom,req.body.prenom,'[FR]'];
+	 
+	        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+               res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "User Added ! "+req.body.email});
+				
+            }
+        });
+		
+		//end
+		
+		//add users
+    router.post("/test",function(req,res){
+       var query = "INSERT INTO ??(?? VALUES (?)";
+        var table = ["test","login",req.body.login];
 	 
 	        query = mysql.format(query,table);
         connection.query(query,function(err,rows){
