@@ -30,15 +30,15 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     });
 		//add users
     router.post("/test",function(req,res){
-       var query = "INSERT INTO ??(??) VALUES (?)";
-        var table = ["test","login",req.body.login];
+       var query = "INSERT INTO ??(??,??) VALUES (?,?)";
+        var table = ["test","login","mdp",req.body.login,req.body.mdp];
 	 
 	        query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "User Added ! "+req.body.email});
+                res.json({"Error" : false, "Message" : "User Added ! "+req.body.login});
 				
             }
         });
