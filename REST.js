@@ -27,6 +27,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		
 		//end
 		
+    });
 		//add users
     router.post("/test",function(req,res){
        var query = "INSERT INTO ??(??) VALUES (?)";
@@ -43,7 +44,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
         });
 		
 		//end
-    });
+	});
 /*get users start*/
 	   router.get("/users",function(req,res){
         var query = "SELECT * FROM ??";
