@@ -6,6 +6,9 @@ var sha1 = require('sha1');
 var hash = require('hash');
 var rest = require("./REST.js");
 var app  = express();
+//var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 // ok
 
 
@@ -19,7 +22,7 @@ REST.prototype.connectMysql = function() {
     var self = this;
     var pool      =    mysql.createPool({
         connectionLimit : 500,
-  host     : '163.172.28.97',
+  		host     : '163.172.28.97',
         user     : 'yoann',
         password : 'baninou2!',
         database : 'yoann',

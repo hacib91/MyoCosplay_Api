@@ -45,6 +45,25 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		
 		//end
 	});
+	
+	
+	/*get login end*/
+	
+		/*get users start*/
+	    router.post("/login/",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["usr","email","mdp",req.body.email,req.body.mdp];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Users" : "the id is"+req.body.email});
+            }
+        });
+    });
+	
+	/*get login end*/
 /*get users start*/
 	   router.get("/users",function(req,res){
         var query = "SELECT * FROM ??";
@@ -91,7 +110,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
         });
     });
 	
-	/*get users end*/
 	/*update users start*/
 	router.put("/users",function(req,res){
         var query = "UPDATE ?? SET ??=? WHERE ??=?";
@@ -164,7 +182,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Event" : rows});
             }
         });
     });
@@ -180,7 +198,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Users" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Event" : rows});
             }
         });
     });
