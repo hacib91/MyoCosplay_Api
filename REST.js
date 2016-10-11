@@ -222,6 +222,56 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		 });
 		//add event
 		
+		/*get tuto start*/
+	   router.get("/tuto",function(req,res){
+        var query = "SELECT * FROM ??";
+        var table = ["tuto_ecrit"];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Event" : rows});
+            }
+        });
+    });
+	/*get event end*/
+	
+	
+	/*get events with specfic id start*/
+	    router.get("/tuto_ecrit/:id",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["tuto_ecrit","id",req.params.id];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Event" : rows});
+            }
+        });
+    });
+	
+	/*get event with specfic id end*/
+	
+	//add events
+    router.post("/tuto_ecrit",function(req,res){
+       var query = "INSERT INTO ??(??,??,??,??,??) VALUES (?,?,?,?,?)";
+        var table = ["evenements","FR_titre","FR_contenu","FR_youtube","FR_cover_img","date", 
+		req.body.titre,req.body.contenu, req.body.youtube, req.body.cover,'2015-10-5'];
+	        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+               res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "User Added ! "+req.body.contenu});
+				
+            }
+        });
+		 });
+		//add event
+		
+		
 }
 
 module.exports = REST_ROUTER;
