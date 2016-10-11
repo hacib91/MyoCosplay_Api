@@ -239,7 +239,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	
 	/*get events with specfic id start*/
-	    router.get("/tuto_ecrit/:id",function(req,res){
+	    router.get("/tuto/:id",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
         var table = ["tuto_ecrit","id",req.params.id];
         query = mysql.format(query,table);
@@ -255,7 +255,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	/*get event with specfic id end*/
 	
 	//add events
-    router.post("/tuto_ecrit",function(req,res){
+    router.post("/tuto",function(req,res){
        var query = "INSERT INTO ??(??,??,??,??,??) VALUES (?,?,?,?,?)";
         var table = ["evenements","FR_titre","FR_contenu","FR_youtube","FR_cover_img","date", 
 		req.body.titre,req.body.contenu, req.body.youtube, req.body.cover,'2015-10-5'];
