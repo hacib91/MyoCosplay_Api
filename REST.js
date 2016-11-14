@@ -6,7 +6,7 @@ function REST_ROUTER(router,connection,sha1) {
 
 REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     router.get("/",function(req,res){
-            res.json({"Message" : {"API MYOCOsplay is working !"}});
+            res.json({"Message" : "API MYOCOsplay is working !"});
     });
 	//add users
     router.post("/users",function(req,res){
