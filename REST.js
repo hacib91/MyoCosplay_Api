@@ -253,7 +253,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     });
 	
 	/*get events with specfic name start*/
-	    router.get("/tuto/:titre",function(req,res){
+	    router.get("/tuto/titre/:titre",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
         var table = ["tuto_ecrit","titre",req.params.titre];
         query = mysql.format(query,table);
