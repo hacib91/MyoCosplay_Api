@@ -238,7 +238,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	/*get event end*/
 	
 	
-	/*get events with specfic id start*/
+	/*get tutos with specfic id start*/
 	    router.get("/tuto/:id",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
         var table = ["tuto_ecrit","id",req.params.id];
@@ -252,7 +252,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
         });
     });
 	
-	/*get events with specfic name start*/
+	/*search tutos with specfic name start*/
 	    router.get("/tuto/titre/:titre",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
         var table = ["tuto_ecrit","titre",req.params.titre];
@@ -268,7 +268,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*get event with specfic id end*/
 	
-	//add events
+	//add tutos
     router.post("/tuto",function(req,res){
        var query = "INSERT INTO ??(??,??,??,??,??) VALUES (?,?,?,?,?)";
         var table = ["evenements","FR_titre","FR_contenu","FR_youtube","FR_cover_img","date", 
@@ -283,7 +283,69 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             }
         });
 		 });
-		//add event
+		
+	
+	/*get tuto video start*/
+	   router.get("/video",function(req,res){
+        var query = "SELECT * FROM ??";
+        var table = ["tuto_video"];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+            }
+        });
+    });
+	/*get event end*/
+	
+	
+	/*get tutos video with specfic id start*/
+	    router.get("/video/:id",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["tuto_video","id",req.params.id];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+            }
+        });
+    });
+	
+	/*search tutos video with specfic name start*/
+	    router.get("/video/titre/:titre",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["tuto_video","titre",req.params.titre];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+            }
+        });
+    });
+	
+	/*get event with specfic id end*/
+	
+	//add tutos video
+    router.post("/video",function(req,res){
+       var query = "INSERT INTO ??(??,??,??,??,??) VALUES (?,?,?,?,?)";
+        var table = ["evenements","FR_titre","FR_contenu","FR_youtube","FR_cover_img","date", 
+		req.body.titre,req.body.contenu, req.body.youtube, req.body.cover,'2015-10-5'];
+	        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+               res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "User Added ! "+req.body.contenu});
+				
+            }
+        });
+		 });
 		
 		
 }
