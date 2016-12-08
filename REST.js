@@ -66,7 +66,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	/*get login end*/
 /*get users start*/
 	   router.get("/users",function(req,res){
-        var query = "SELECT * FROM ??";
+        var query = "SELET * FROM ??";
         var table = ["usr"];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
@@ -182,7 +182,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
             }
         });
     });
@@ -225,7 +225,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Event" : rows});
             }
         });
     });
