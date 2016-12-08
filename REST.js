@@ -173,6 +173,20 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*get news with specfic id end*/
 	
+		/*search tutos with specfic name start*/
+	    router.get("/actu/titre/:titre",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["actu","titre",req.params.titre];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+            }
+        });
+    });
+	
 	/*get event start*/
 	   router.get("/event",function(req,res){
         var query = "SELECT * FROM ??";
@@ -199,6 +213,19 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
                 res.json({"Error" : false, "Message" : "Success", "Event" : rows});
+            }
+        });
+    });
+		/*search tutos with specfic name start*/
+	    router.get("/event/titre/:titre",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["evenements","titre",req.params.titre];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
             }
         });
     });
