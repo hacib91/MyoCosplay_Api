@@ -65,9 +65,9 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*get login end*/
 /*get users start*/
-	   router.get("/usr",function(req,res){
-        var query = "SELET * FROM ??";
-        var table = ["actu"];
+	   router.get("/users",function(req,res){
+        var query = "SELECT * FROM ??";
+        var table = ["usr"];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -144,7 +144,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	/*get news start*/
 	   router.get("/actu",function(req,res){
         var query = "SELECT * FROM ??";
-        var table = ["usr"];
+        var table = ["actu"];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
