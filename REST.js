@@ -65,7 +65,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*get login end*/
 /*get users start*/
-	   router.get("/users",function(req,res){
+	   router.get("/usr",function(req,res){
         var query = "SELET * FROM ??";
         var table = ["users"];
         query = mysql.format(query,table);
