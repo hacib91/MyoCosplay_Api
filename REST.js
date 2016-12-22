@@ -79,6 +79,21 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     });
 	/*get users end*/
 	
+	/*get users sha1 test passport*/
+	   router.get("/usr",function(req,res){
+        var query = "SELECT * FROM ??";
+        var table = ["usr"];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Users" : rows});
+            }
+        });
+    });
+	/*get users end*/
+	
 	/*get users with specfic id start*/
 	    router.get("/users/:id",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
