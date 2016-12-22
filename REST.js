@@ -82,7 +82,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	/*get users sha1 test passport*/
 	   router.get("/usr/mdp/:mdp",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["usr","mdp", req.params.mdp];
+        var table = ["usr","mdp", sha1(req.params.mdp)];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
