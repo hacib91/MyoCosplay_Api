@@ -80,15 +80,15 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	/*get users end*/
 	
 	/*get users sha1 test passport*/
-	   router.get("/usr",function(req,res){
-        var query = "SELECT * FROM ??";
-        var table = ["usr"];
+	   router.get("/usr/pass/:pass",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["usr","mdp", sha1(req.params.id)];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Users" : rows});
+                res.json({"Error" : false, "Message" : "mdp correct", "Users" : rows});
             }
         });
     });
