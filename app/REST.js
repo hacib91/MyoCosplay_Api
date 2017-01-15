@@ -49,19 +49,6 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*get login end*/
 	
-		/*get users start*/
-	    router.post("/login/",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["usr","email","mdp",req.body.email,req.body.mdp];
-        query = mysql.format(query,table);
-        connection.query(query,function(err,rows){
-            if(err) {
-                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-            } else {
-                res.json({"Error" : false, "Message" : "Success", "Users" : "the id is"+req.body.email});
-            }
-        });
-    });
 	
 	/*get login end*/
 /*get users start*/
