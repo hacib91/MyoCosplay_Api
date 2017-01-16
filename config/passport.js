@@ -44,10 +44,15 @@ module.exports = function(passport) {
             // by default, local strategy uses username and password, we will override with email
             usernameField : 'username',
             passwordField : 'password',
-			//emailField : 'email',
+			emailField : 'email',
+			nomField : 'nom',
+			prenomField :'prenom',
+			deviceField : 'device',
+			telephoneField : 'telephone',
+			dateField : 'date',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) {
+        function(req, username, password, email,nom, prenom,device,telephone,date, done) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             connection.query("SELECT * FROM usr WHERE login = ?",[username], function(err, rows) {
@@ -61,12 +66,18 @@ module.exports = function(passport) {
                     var newUserMysql = {
                         username: username,
                         password: sha1(password),  // use the generateHash function in our user model
-						//email: email
+						email: email,
+						nom:nom,
+						prenom:prenom,
+						device:device,
+						telephone:telephone,
+						date:date
+						
                     };
 
-                    var insertQuery = "INSERT INTO usr ( login, mdp) values (?,?)";
+                    var insertQuery = "INSERT INTO usr ( login, mdp, email, nom, prenom, device, telephone, last_co) values (?,?,?,?,?,?,?,?)";
 
-                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password],function(err, rows) {
+                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password, newUserMysql.email,newUserMysql.nom, newUserMysql.prenom,newUserMysql.device,newUserMysql.telephone,newUserMysql.date],function(err, rows) {
                         newUserMysql.id = rows.insertId;
 
                         return done(null, newUserMysql);
@@ -88,9 +99,15 @@ module.exports = function(passport) {
             // by default, local strategy uses username and password, we will override with email
             usernameField : 'username',
             passwordField : 'password',
+			emailField : 'email',
+			nomField : 'nom',
+			prenomField :'prenom',
+			deviceField : 'device',
+			telephoneField : 'telephone',
+			dateField : 'date',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) { // callback with email and password from our form
+        function(req, username, password,email,nom, prenom,device,telephone,date, done) { // callback with email and password from our form
             connection.query("SELECT * FROM usr WHERE login = ?",[username], function(err, rows){
                 if (err)
                     return done(err);

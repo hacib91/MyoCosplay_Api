@@ -143,6 +143,65 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
         });
     });
 	/*delete users end*/
+	
+	
+		/*get boutique start*/
+	   router.get("/boutique",function(req,res){
+        var query = "SELECT * FROM ??";
+        var table = ["vente_cos"];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+            }
+        });
+    });
+	/*get boutique end*/
+	
+			/*search tutos with specfic name start*/
+	    router.get("/boutique/titre/:titre",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["vente_cos","titre",req.params.titre];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+            }
+        });
+    });
+	
+		/*get boutique start*/
+	   router.get("/location",function(req,res){
+        var query = "SELECT * FROM ??";
+        var table = ["loca_cos"];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+            }
+        });
+    });
+	/*get boutique end*/
+	
+			/*search tutos with specfic name start*/
+	    router.get("/location/titre/:titre",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["loca_cos","titre",req.params.titre];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+            }
+        });
+    });
 	/*get news start*/
 	   router.get("/actu",function(req,res){
         var query = "SELECT * FROM ??";
@@ -157,6 +216,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
         });
     });
 	/*get news end*/
+	
+	
 	
 	
 	/*get news with specfic id start*/
