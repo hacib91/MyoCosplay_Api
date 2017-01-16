@@ -154,7 +154,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Boutique" : rows});
             }
         });
     });
@@ -169,7 +169,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Boutique" : rows});
             }
         });
     });
@@ -183,7 +183,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Location" : rows});
             }
         });
     });
@@ -198,7 +198,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             if(err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+                res.json({"Error" : false, "Message" : "Success", "Location" : rows});
             }
         });
     });
