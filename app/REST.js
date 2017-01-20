@@ -1,4 +1,4 @@
-@var mysql = require("mysql");
+var mysql = require("mysql");
 function REST_ROUTER(router,connection,sha1) {
     var self = this;
     self.handleRoutes(router,connection,sha1);
