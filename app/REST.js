@@ -330,7 +330,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*get tutos with specfic id start*/
 	    router.get("/tuto/:id",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ?? LIKE %?%";
+        var query = "SELECT * FROM ?? WHERE ??=?";
         var table = ["tuto_ecrit","id",req.params.id];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
