@@ -1,4 +1,4 @@
-var mysql = require("mysql");
+@var mysql = require("mysql");
 function REST_ROUTER(router,connection,sha1) {
     var self = this;
     self.handleRoutes(router,connection,sha1);
@@ -330,7 +330,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*get tutos with specfic id start*/
 	    router.get("/tuto/:id",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
+        var query = "SELECT * FROM ?? WHERE ?? LIKE %?%";
         var table = ["tuto_ecrit","id",req.params.id];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
@@ -344,7 +344,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*search tutos with specfic name start*/
 	    router.get("/tuto/titre/:titre",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
+        var query = "SELECT * FROM ?? WHERE ?? LIKE %?%";
         var table = ["tuto_ecrit","titre",req.params.titre];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
