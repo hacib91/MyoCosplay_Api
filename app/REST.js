@@ -162,8 +162,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 			/*search tutos with specfic name start*/
 	    router.get("/boutique/titre/:titre",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["vente_cos","titre",req.params.titre];
+        var query = "SELECT * FROM ?? WHERE ?? LIKE ?";
+        var table = ["vente_cos","titre",'%'+req.params.titre+'%'];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -191,8 +191,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 			/*search tutos with specfic name start*/
 	    router.get("/location/titre/:titre",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["loca_cos","titre",req.params.titre];
+        var query = "SELECT * FROM ?? WHERE ?? LIKE ?";
+        var table = ["loca_cos","titre",'%'+req.params.titre+'%'];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -238,8 +238,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 		/*search tutos with specfic name start*/
 	    router.get("/actu/titre/:titre",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["actu","FR_titre",req.params.titre];
+        var query = "SELECT * FROM ?? WHERE ?? LIKE ?";
+        var table = ["actu","FR_titre",'%'+req.params.titre+'%'];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -345,7 +345,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	/*search tutos with specfic name start*/
 	    router.get("/tuto/titre/:titre",function(req,res){
         var query = "SELECT * FROM ?? WHERE ?? LIKE ?";
-        var table = ["tuto_ecrit","titre",req.params.titre];
+        var table = ["tuto_ecrit","titre",'%'+req.params.titre+'%'];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -407,8 +407,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*search tutos video with specfic name start*/
 	    router.get("/video/titre/:titre",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["tuto_video","titre",req.params.titre];
+        var query = "SELECT * FROM ?? WHERE ?? LIKE ?";
+        var table = ["tuto_video","titre",'%'+req.params.titre+'%'];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
