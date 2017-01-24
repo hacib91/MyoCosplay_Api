@@ -28,28 +28,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		//end
 		
     });
-		//add users
-    router.post("/test",function(req,res){
-       var query = "INSERT INTO ??(??,??) VALUES (?,?)";
-        var table = ["test","login","mdp",req.body.login,req.body.mdp];
-	 
-	        query = mysql.format(query,table);
-        connection.query(query,function(err,rows){
-            if(err) {
-               res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-            } else {
-                res.json({"Error" : false, "Message" : "User Added ! "+req.body.login});
-				
-            }
-        });
-		
-		//end
-	});
-	
-	
-	/*get login end*/
-	
-	
+
+
 	/*get login end*/
 /*get users start*/
 	   router.get("/users",function(req,res){
@@ -239,7 +219,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		/*search tutos with specfic name start*/
 	    router.get("/actu/titre/:titre",function(req,res){
         var query = "SELECT * FROM ?? WHERE ?? LIKE ?";
-        var table = ["actu","FR_titre",req.params.titre];
+        var table = ["actu","FR_titre",'%'+req.params.titre+'%'];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -281,8 +261,8 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     });
 		/*search tutos with specfic name start*/
 	    router.get("/event/titre/:titre",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["evenements","FR_titre",req.params.titre];
+        var query = "SELECT * FROM ?? WHERE ?? LIKE ?";
+        var table = ["evenements","FR_titre",'%'+req.params.titre+'%'];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
