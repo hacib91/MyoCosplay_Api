@@ -307,6 +307,20 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     });
 	/*get event end*/
 	
+			/*get tuto start*/
+	   router.get("/best",function(req,res){
+        var query = "SELECT * FROM ?? WHERE id BETWEEN 55 AND 58";
+        var table = ["tuto_ecrit"];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+            }
+        });
+    });
+	/*get event end*/
 	
 	/*get tutos with specfic id start*/
 	    router.get("/tuto/:id",function(req,res){
