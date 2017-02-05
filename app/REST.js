@@ -109,7 +109,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 		/*update users start*/
 	router.put("/update",function(req,res){
-        var query = "UPDATE ?? SET ??=? WHERE ??=?";
+        var query = "UPDATE ?? SET ??=?, ??=? WHERE ??=?";
         var table = ["usr","taille",req.body.taille,"poids",req.body.poids,"login",req.body.login];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
