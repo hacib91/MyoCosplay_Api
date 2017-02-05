@@ -94,7 +94,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 	/*update users start*/
 	router.put("/users",function(req,res){
-        var query = "UPDATE ?? SET ??=? WHERE ??=?";
+        var query = "UPDATE ?? SET ??=? ??=? WHERE ??=?";
         var table = ["usr","mdp",sha1(req.body.mdp),"email",req.body.email];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
@@ -107,7 +107,20 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     });
 	/*update users end*/
 	
-	
+		/*update users start*/
+	router.put("/update",function(req,res){
+        var query = "UPDATE ?? SET ??=? WHERE ??=?";
+        var table = ["usr","taille",req.body.taille,"poids",req.body.poids,"login",req.body.login];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Updated the taille for login "+req.body.login});
+            }
+        });
+    });
+	/*update users end*/
 	
 	/*delete users start*/
 	router.delete("/users/",function(req,res){

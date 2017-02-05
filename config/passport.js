@@ -14,12 +14,6 @@ connection.query('USE ' + dbconfig.database);
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
-    // =========================================================================
-    // passport session setup ==================================================
-    // =========================================================================
-    // required for persistent login sessions
-    // passport needs ability to serialize and unserialize users out of session
-
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -35,8 +29,6 @@ module.exports = function(passport) {
     // =========================================================================
     // LOCAL SIGNUP ============================================================
     // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
 
     passport.use(
         'local-signup',
@@ -90,8 +82,6 @@ module.exports = function(passport) {
     // =========================================================================
     // LOCAL LOGIN =============================================================
     // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
 
     passport.use(
         'local-login',
@@ -116,12 +106,10 @@ module.exports = function(passport) {
                 }
 
                 // if the user is found but the password is wrong
-             // if (!bcrypt.compareSync(password, rows[0].mdp))
 				if (sha1(password) !== rows[0].mdp)
                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
                 // all is well, return successful user
-                //console.log(rows[0].login);
 				return done(null, rows[0]);
 				
             });
