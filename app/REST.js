@@ -109,8 +109,10 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 	
 		/*update users start*/
 	router.put("/update",function(req,res){
-        var query = "UPDATE ?? SET ??=?, ??=? WHERE ??=?";
-        var table = ["usr","taille",req.body.taille,"poids",req.body.poids,"login",req.body.login];
+        var query = "UPDATE ?? SET ??=?, ??=?, ??=?, ??=? WHERE ??=?";
+        var table = ["usr","tour_de_taille",req.body.tour_taille,"jambes_exterieures",req.body.jambes_ext,
+					 "tour_de_poitrine",req.body.poitrine,"tour_des_hanches",req.body.hanches,"argeur_depaules",req.body.epaule,
+					 "taille",req.body.taille,"poids",req.body.poids,"login",req.body.login];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
