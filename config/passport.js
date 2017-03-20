@@ -6,6 +6,8 @@ var LocalStrategy   = require('passport-local').Strategy;
 // load up the user model
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
+//var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(16);
 var dbconfig = require('./database');
 var sha1 = require('sha1');
 var connection = mysql.createConnection(dbconfig.connection);
@@ -53,11 +55,13 @@ module.exports = function(passport) {
                 if (rows.length) {
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
+					
                     // if there is no user with that username
                     // create the user
                     var newUserMysql = {
                         username: username,
-                        password: sha1(password),  // use the generateHash function in our user model
+                        //password: sha1(password),  // use the generateHash function in our user model
+						password: bcrypt.hashSync(password, salt),  // use the generateHash function in our user model
 						email: email,
 						nom:nom,
 						prenom:prenom,
