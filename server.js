@@ -63,7 +63,7 @@ REST.prototype.connectMysql = function() {
     var self = this;
     var pool      =    mysql.createPool({
         connectionLimit : 500,
-  		host     : '163.172.28.9', /* 7*/
+  		host     : '163.172.28.97',
         user     : 'yoann',
         password : 'baninou2!',
         database : 'yoann',
