@@ -29,7 +29,13 @@
   },
   "dependencies": {
     "bignumber.js": "2.1.4",
-    "readable-stream": "~1.1.13"
+    "mysql2": "^1.2.0",
+    "pg": "^6.1.5",
+    "pg-hstore": "^2.3.2",
+    "readable-stream": "~1.1.13",
+    "sequelize": "^3.30.4",
+    "sqlite3": "^3.1.8",
+    "tedious": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "1.10.1",
@@ -114,4 +120,3 @@
   "directories": {},
   "_resolved": "https://registry.npmjs.org/mysql/-/mysql-2.10.2.tgz"
 }
-

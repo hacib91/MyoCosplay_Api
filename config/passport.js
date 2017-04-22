@@ -10,6 +10,7 @@ var bcrypt = require('bcrypt-nodejs');
 var salt = bcrypt.genSaltSync(16);
 var dbconfig = require('./database');
 var sha1 = require('sha1');
+var sha256 = require('sha256');
 var connection = mysql.createConnection(dbconfig.connection);
 
 connection.query('USE ' + dbconfig.database);
@@ -61,7 +62,7 @@ module.exports = function(passport) {
                     var newUserMysql = {
                         username: username,
                         //password: sha1(password),  // use the generateHash function in our user model
-						password: bcrypt.hashSync(password, salt),  // use the generateHash function in our user model
+						password: bcrypt.hashSync(sha256(password), salt),  // use the generateHash function in our user model
 						email: email,
 						nom:nom,
 						prenom:prenom,
