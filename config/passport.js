@@ -12,7 +12,6 @@ var dbconfig = require('./database');
 var sha1 = require('sha1');
 var sha256 = require('sha256');
 var connection = mysql.createConnection(dbconfig.connection);
-
 connection.query('USE ' + dbconfig.database);
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -32,7 +31,6 @@ module.exports = function(passport) {
     // =========================================================================
     // LOCAL SIGNUP ============================================================
     // =========================================================================
-
     passport.use(
         'local-signup',
         new LocalStrategy({
@@ -47,6 +45,7 @@ module.exports = function(passport) {
 			dateField : 'date',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
+						 
         function(req, username, password, email,nom, prenom,device,telephone,date, done) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
