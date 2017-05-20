@@ -1,4 +1,5 @@
 var mysql = require("mysql");
+var Sequelize = require('sequelize');
 function REST_ROUTER(router,connection,sha1) {
     var self = this;
     self.handleRoutes(router,connection,sha1);
@@ -45,6 +46,16 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		
 		//end
 	});
+	
+	
+	
+			//add users
+    router.post("/sql",function(req,res){
+
+
+	});
+	
+	
 	
 	
 	/*get login end*/

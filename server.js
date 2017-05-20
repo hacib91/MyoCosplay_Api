@@ -15,8 +15,12 @@ var rest = require("./app/REST.js");
 
 var passport = require('passport');
 var flash    = require('connect-flash');
+var Sequelize = require('sequelize');
+var restful   = require('sequelize-restful');
 
 
+
+//var users  = require('./routes/users');
 // configuration ===============================================================
 // connect to our database
 
@@ -58,6 +62,54 @@ function REST(){
     var self = this;
     self.connectMysql();
 };
+/*MY ORMMMMMMMMMMMMMM */
+/*MY ORMMMMMMMMMMMMMM */
+/*MY ORMMMMMMMMMMMMMM */
+/*MY ORMMMMMMMMMMMMMM */
+var sequelize = new Sequelize('yoann', 'yoann', 'baninou2!', {
+  host: '163.172.28.97',
+  dialect: 'mysql'
+});
+
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully. wow');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
+
+var User = sequelize.define('users', {
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  }
+});
+
+var Project = sequelize.define('myorm', {
+  Age: {
+    type: Sequelize.STRING
+  },
+
+});
+
+// force: true will drop the table if it already exists
+User.sync({force: false}).then(function () {
+  // Table created
+  return User.create({
+    firstName: 'haseeb',
+    lastName: 'khalid'
+  });
+});
+
+app.use(restful(sequelize));
+/*MY ORMMMMMMMMMMMMMM */
+/*MY ORMMMMMMMMMMMMMM */
+/*MY ORMMMMMMMMMMMMMM */
+/*MY ORMMMMMMMMMMMMMM */
 
 REST.prototype.connectMysql = function() {
     var self = this;
@@ -78,6 +130,7 @@ REST.prototype.connectMysql = function() {
     });
 }
 
+
 REST.prototype.configureExpress = function(connection) {
       var self = this;
       app.use(bodyParser.urlencoded({ extended: true }));
@@ -88,3 +141,4 @@ REST.prototype.configureExpress = function(connection) {
 }
 
 new REST();
+
