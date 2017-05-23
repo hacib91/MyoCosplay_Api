@@ -1,13 +1,58 @@
 var mysql = require("mysql");
+
+var express = require('express');
+var router = express.Router();
+
+// routes/index.js
+
+var models = require('../models');
 function REST_ROUTER(router,connection,sha1) {
     var self = this;
     self.handleRoutes(router,connection,sha1);
 }
 
+
+
 REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     router.get("/",function(req,res){
             res.json({"Message" : "API MYOCOsplay is working !"});
     });
+	
+	router.get('/bahrain', function(req, res) {
+  models.bahrain.findAll().then(function(bahrain) {
+
+res.json({"Error" : false, "Message" : "Success", "Users" : bahrain});
+  });
+});
+	
+	router.get('/list', function(req, res) {
+  models.User.findAll().then(function(users) {
+
+res.json({"Error" : false, "Message" : "Success", "Users" : users});
+  });
+});
+	
+	router.get('/event', function(req, res) {
+  models.evenements.findAll().then(function(evenements) {
+
+res.json({"Error" : false, "Message" : "Success", "Event" : evenements});
+  });
+});
+	
+		router.get('/actu', function(req, res) {
+  models.actu.findAll().then(function(actu) {
+
+res.json({"Error" : false, "Message" : "Success", "Actu" : actu});
+  });
+});
+	
+	
+	router.get('/tuto', function(req, res, next) {
+  models.tuto_ecrit.findAll().then(function(tuto_ecrit) {
+
+res.json({"Error" : false, "Message" : "Success", "Tuto" : tuto_ecrit});
+  });
+});
 	//add users
     router.post("/users",function(req,res){
        var query = "INSERT INTO ??(??,??,??,??,??,??,??,??,??,??,??) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -197,20 +242,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
             }
         });
     });
-	/*get news start*/
-	   router.get("/actu",function(req,res){
-        var query = "SELECT * FROM ??";
-        var table = ["actu"];
-        query = mysql.format(query,table);
-        connection.query(query,function(err,rows){
-            if(err) {
-                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-            } else {
-                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
-            }
-        });
-    });
-	/*get news end*/
+
 	
 	
 	
@@ -246,7 +278,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
     });
 	
 	/*get event start*/
-	   router.get("/event",function(req,res){
+	   router.get("/events",function(req,res){
         var query = "SELECT * FROM ??";
         var table = ["evenements"];
         query = mysql.format(query,table);
@@ -307,19 +339,7 @@ REST_ROUTER.prototype.handleRoutes= function(router,connection,sha1) {
 		 });
 		//add event
 		
-		/*get tuto start*/
-	   router.get("/tuto",function(req,res){
-        var query = "SELECT * FROM ??";
-        var table = ["tuto_ecrit"];
-        query = mysql.format(query,table);
-        connection.query(query,function(err,rows){
-            if(err) {
-                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-            } else {
-                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
-            }
-        });
-    });
+
 	/*get event end*/
 	
 			/*get tuto start*/

@@ -80,30 +80,30 @@ sequelize
     console.log('Unable to connect to the database:', err);
   });
 
-var User = sequelize.define('users', {
-  firstName: {
-    type: Sequelize.STRING
-  },
-  lastName: {
-    type: Sequelize.STRING
-  }
+/*var User = sequelize.define('users', {
+	firstName: {
+		type: Sequelize.STRING
+	},
+	lastName: {
+		type: Sequelize.STRING
+	}
 });
 
 var Project = sequelize.define('myorm', {
-  Age: {
-    type: Sequelize.STRING
-  },
+	Age: {
+		type: Sequelize.STRING
+	},
 
-});
+});*/
 
 // force: true will drop the table if it already exists
-User.sync({force: false}).then(function () {
+/*User.sync({force: false}).then(function () {
   // Table created
   return User.create({
     firstName: 'haseeb',
     lastName: 'khalid'
   });
-});
+});*/
 
 app.use(restful(sequelize));
 /*MY ORMMMMMMMMMMMMMM */
