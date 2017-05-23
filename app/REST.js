@@ -245,8 +245,8 @@ res.json({"Error" : false, "Message" : "Success", "Tuto" : tuto_ecrit});
 
 		/*get news with specfic id start*/
 	    router.get("/actu",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["actu","id",req.params.id];
+        var query = "SELECT * FROM ??";
+        var table = ["actu"];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
