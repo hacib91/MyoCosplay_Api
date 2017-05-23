@@ -371,8 +371,8 @@ res.json({"Error" : false, "Message" : "Success", "Tuto" : tuto_ecrit});
 	
 		/*get tutos*/
 	    router.get("/tuto",function(req,res){
-        var query = "SELECT * FROM ?? WHERE ??=?";
-        var table = ["tuto_ecrit","id",req.params.id];
+        var query = "SELECT * FROM ??";
+        var table = ["tuto_ecrit"];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
