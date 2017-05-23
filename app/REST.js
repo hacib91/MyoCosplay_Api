@@ -32,14 +32,14 @@ res.json({"Error" : false, "Message" : "Success", "Users" : users});
   });
 });
 	
-	router.get('/event', function(req, res) {
+	router.get('/events', function(req, res) {
   models.evenements.findAll().then(function(evenements) {
 
 res.json({"Error" : false, "Message" : "Success", "Event" : evenements});
   });
 });
 	
-		router.get('/actu', function(req, res) {
+		router.get('/actus', function(req, res) {
   models.actu.findAll().then(function(actu) {
 
 res.json({"Error" : false, "Message" : "Success", "Actu" : actu});
@@ -47,7 +47,7 @@ res.json({"Error" : false, "Message" : "Success", "Actu" : actu});
 });
 	
 	
-	router.get('/tuto', function(req, res, next) {
+	router.get('/tutos', function(req, res, next) {
   models.tuto_ecrit.findAll().then(function(tuto_ecrit) {
 
 res.json({"Error" : false, "Message" : "Success", "Tuto" : tuto_ecrit});
@@ -243,7 +243,19 @@ res.json({"Error" : false, "Message" : "Success", "Tuto" : tuto_ecrit});
         });
     });
 
-	
+		/*get news with specfic id start*/
+	    router.get("/actu",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["actu","id",req.params.id];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Actu" : rows});
+            }
+        });
+    });
 	
 	
 	
@@ -278,7 +290,7 @@ res.json({"Error" : false, "Message" : "Success", "Tuto" : tuto_ecrit});
     });
 	
 	/*get event start*/
-	   router.get("/events",function(req,res){
+	   router.get("/event",function(req,res){
         var query = "SELECT * FROM ??";
         var table = ["evenements"];
         query = mysql.format(query,table);
@@ -357,6 +369,19 @@ res.json({"Error" : false, "Message" : "Success", "Tuto" : tuto_ecrit});
     });
 	/*get event end*/
 	
+		/*get tutos*/
+	    router.get("/tuto",function(req,res){
+        var query = "SELECT * FROM ?? WHERE ??=?";
+        var table = ["tuto_ecrit","id",req.params.id];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err) {
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            } else {
+                res.json({"Error" : false, "Message" : "Success", "Tuto" : rows});
+            }
+        });
+    });
 	/*get tutos with specfic id start*/
 	    router.get("/tuto/:id",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
