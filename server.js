@@ -17,7 +17,7 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var Sequelize = require('sequelize');
 var restful   = require('sequelize-restful');
-
+//var models = require('models');
 
 
 //var users  = require('./routes/users');
@@ -62,6 +62,18 @@ function REST(){
     var self = this;
     self.connectMysql();
 };
+
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 /*MY ORMMMMMMMMMMMMMM */
 /*MY ORMMMMMMMMMMMMMM */
 /*MY ORMMMMMMMMMMMMMM */
@@ -70,7 +82,7 @@ var sequelize = new Sequelize('yoann', 'yoann', 'baninou2!', {
   host: '163.172.28.97',
   dialect: 'mysql'
 });
-
+/*
 sequelize
   .authenticate()
   .then(function(err) {
@@ -80,7 +92,7 @@ sequelize
     console.log('Unable to connect to the database:', err);
   });
 
-/*var User = sequelize.define('users', {
+var User = sequelize.define('users', {
 	firstName: {
 		type: Sequelize.STRING
 	},
@@ -105,7 +117,7 @@ var Project = sequelize.define('myorm', {
   });
 });*/
 
-app.use(restful(sequelize));
+//app.use(restful(sequelize));
 /*MY ORMMMMMMMMMMMMMM */
 /*MY ORMMMMMMMMMMMMMM */
 /*MY ORMMMMMMMMMMMMMM */

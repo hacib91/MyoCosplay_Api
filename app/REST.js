@@ -4,8 +4,8 @@ var express = require('express');
 var router = express.Router();
 
 // routes/index.js
-
 var models = require('../models');
+
 function REST_ROUTER(router,connection,sha1) {
     var self = this;
     self.handleRoutes(router,connection,sha1);
