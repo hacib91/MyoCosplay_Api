@@ -20,6 +20,7 @@ var restful   = require('sequelize-restful');
 //var models = require('models');
 
 
+var index = require('./routes/index');
 //var users  = require('./routes/users');
 // configuration ===============================================================
 // connect to our database
