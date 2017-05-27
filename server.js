@@ -20,7 +20,7 @@ var restful   = require('sequelize-restful');
 //var models = require('models');
 
 
-var index = require('./routes/index');
+var index = require('./routes/index.js');
 //var users  = require('./routes/users');
 // configuration ===============================================================
 // connect to our database
@@ -57,7 +57,7 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 app.listen(port);
 console.log('The magic happens on port ' + port);
 
-
+app.use('/', index);
 
 function REST(){
     var self = this;
