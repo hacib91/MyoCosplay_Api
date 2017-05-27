@@ -61,7 +61,7 @@ module.exports = function(passport) {
                     var newUserMysql = {
                         username: username,
                         //password: sha1(password),  // use the generateHash function in our user model
-						password: bcrypt.hashSync(password, salt),  // use the generateHash function in our user model
+						password: bcrypt.hashSync(sha256(password), salt),  // use the generateHash function in our user model
 						email: email,
 						nom:nom,
 						prenom:prenom,
