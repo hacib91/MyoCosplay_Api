@@ -61,7 +61,8 @@ module.exports = function(passport) {
                     var newUserMysql = {
                         username: username,
                         //password: sha1(password),  // use the generateHash function in our user model
-						password: bcrypt.hashSync(sha256(password), salt),  // use the generateHash function in our user model
+						//password: bcrypt.hashSync(sha256(password), salt), 
+						password: sha256(password),// use the generateHash function in our user model
 						email: email,
 						nom:nom,
 						prenom:prenom,
@@ -110,7 +111,7 @@ module.exports = function(passport) {
                 }
 
                 // if the user is found but the password is wrong
-				if (sha256((password)) !== rows[0].mdp)
+				if (sha256(password) !== rows[0].mdp)
                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
                 // all is well, return successful user
