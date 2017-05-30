@@ -54,7 +54,8 @@
     "index.js"
   ],
   "engines": {
-    "node": ">= 0.6"
+    "node": ">= 0.6”,
+	"npm": ”5.0.0”
   },
   "scripts": {
     "lint": "eslint lib/**/*.js index.js test/**/*.js",
