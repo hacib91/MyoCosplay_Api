@@ -4,6 +4,8 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
+var crypto = require('crypto');
+var sum = crypto.createHash('sha256');
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 //var bcrypt = require('bcrypt');
@@ -45,6 +47,12 @@ module.exports = function(passport) {
 			dateField : 'date',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
+						  
+						  function hashPassword(password, salt) {
+  var sum = crypto.createHash('sha256');
+  sum.update(password + salt);
+  return 'sha256$'+ sum.digest('hex');
+},
 						 
         function(req, username, password, email,nom, prenom,device,telephone,date, done) {
             // find a user whose email is the same as the forms email
@@ -62,7 +70,8 @@ module.exports = function(passport) {
                         username: username,
                         //password: sha1(password),  // use the generateHash function in our user model
 						//password: bcrypt.hashSync(sha256(password), salt), 
-						password: sha256(password),// use the generateHash function in our user model
+						password : hashPassword,
+						//password: sha256(password),// use the generateHash function in our user model
 						email: email,
 						nom:nom,
 						prenom:prenom,
