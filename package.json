@@ -28,21 +28,21 @@
     "url": "https://github.com/felixge/node-mysql"
   },
   "dependencies": {
-    "bignumber.js": "2.1.4",
+    "bignumber.js": "4.0.2",
     "mysql2": "^1.2.0",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
-    "readable-stream": "~1.1.13",
+    "readable-stream": "~2.2.9",
     "sequelize": "^3.30.4",
     "sqlite3": "^3.1.8",
     "tedious": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "1.10.1",
-    "istanbul": "0.4.2",
-    "require-all": "2.0.0",
-    "rimraf": "2.2.8",
-    "timezone-mock": "0.0.0",
+    "eslint": "3.19.0",
+    "istanbul": "0.4.5",
+    "require-all": "2.2.0",
+    "rimraf": "2.6.1",
+    "timezone-mock": "0.0.3",
     "mkdirp": "0.5.1",
     "urun": "0.0.8",
     "utest": "0.0.8"
